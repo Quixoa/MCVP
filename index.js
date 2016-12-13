@@ -4,6 +4,6 @@ var app = express();
 app.get('/', function(req, res) {
   res.send('Hello World!');
 })
-app.listen(5000, function() {
+app.listen(80, function() {
   console.log("Node app is running");
 })
