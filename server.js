@@ -1,17 +1,17 @@
 'use strict';
 
-const express = require('express');
-const socketIO = require('socket.io');
-const path = require('path');
+var express = require('express');
+var socketIO = require('socket.io');
+var path = require('path');
 
-const PORT = process.env.PORT || 3000;
-const INDEX = path.join(__dirname, 'index.html');
+var PORT = process.env.PORT || 3000;
+var INDEX = path.join(__dirname, 'index.html');
 
-const server = express()
+var server = express()
   .use((req, res) => res.sendFile(INDEX) )
   .listen(PORT, () => console.log(`Listening on ${ PORT }`));
 
-const io = socketIO(server);
+var io = socketIO(server);
 
 io.on('connection', (socket) => {
   console.log('Client connected');
