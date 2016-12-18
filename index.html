@@ -1,6 +1,7 @@
 <html>
   <body>
     <p id='server-time'></p>
+    <p id='something'></p>
     <script src="/socket.io/socket.io.js"></script>
     <script>
       var socket = io();
@@ -8,6 +9,9 @@
 
       socket.on('time', function(timeString) {
         el.innerHTML = 'Server time: ' + timeString;
+      });
+      socket.on('con', function(str) {
+        el.innerHTML = str;
       });
     </script>
   </body>
