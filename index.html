@@ -5,13 +5,14 @@
     <script src="/socket.io/socket.io.js"></script>
     <script>
       var socket = io();
-      var el = document.getElementById('server-time');
+      var e1 = document.getElementById('server-time');
+      var e2 = document.getElementById('something');
 
       socket.on('time', function(timeString) {
-        el.innerHTML = 'Server time: ' + timeString;
+        e1.innerHTML = 'Server time: ' + timeString;
       });
       socket.on('con', function(str) {
-        el.innerHTML = str;
+        e2.innerHTML = str;
       });
     </script>
   </body>
