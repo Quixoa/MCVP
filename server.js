@@ -17,7 +17,9 @@ io.on('connection', (socket) => {
   console.log('Client connected');
   users = users+1;
   io.emit('con',users);
-  socket.on('disconnect', () => console.log('Client disconnected'));
+  socket.on('disconnect',function(){
+    users = users-1
+  });
 });
 
 
