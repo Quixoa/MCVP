@@ -10,7 +10,7 @@ const INDEX = path.join(__dirname, 'index.html');
 const server = express();
 
 server.get('/',function(req,res){
-  res.sendfile(__dirname + '/index.html')
+  res.sendfile(__dirname + '/index.html');
 });
 
 server.listen(PORT, function(){
