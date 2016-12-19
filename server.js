@@ -55,4 +55,4 @@ io.on('connection', (socket) => {
 });
 
 
-setInterval(() => io.emit('tick', data, 1000);
+setInterval(() => io.emit('tick', data, 1000));
