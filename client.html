@@ -1,0 +1,27 @@
+<html>
+  <body>
+    <h1 id='clients'></h1>
+    <h1 id='host'></h1>
+    <h1 id='myid'></h1>
+
+    <script src="/socket.io/socket.io.js"></script>
+
+    <script>
+      var socket = io();
+      var e1 = document.getElementById('clients');
+      var e2 = document.getElementById('host');
+      var e3 = document.getElementById('myid');
+
+      socket.emit('clientConnected',socket.id);
+
+      socket.on('tick', function(data) {
+        e1.innerHTML = 'Clients Connected: '+data.clients;
+        e2.innerHTML = 'Host Connected?: '+data.host;
+        e3.innerHTML = 'Your ID: '+socket.id;
+
+
+      });
+    </script>
+
+  </body>
+</html>
