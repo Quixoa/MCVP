@@ -39,17 +39,14 @@ var io = socketIO(server);
 io.on('connection', (socket) => {
   data.totalConnections = data.totalConnections+1;
 
-  socket.on('clientConnected',function(id){
-    data.clientIDs.push(id);
-    console.log('Added Client '+id)
+  socket.on('clientConnected',function(){
+    data.clientIDs.push(socket.id);
     data.clients = data.clients + 1;
-
 
   });
 
-  socket.on('hostConnected',function(id){
-    data.hostIDs.push(id);
-    console.log('Added Host '+id)
+  socket.on('hostConnected',function(){
+    data.hostIDs.push(socket.id);
     data.host = true;
 
   });

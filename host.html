@@ -2,9 +2,9 @@
 <link rel="stylesheet" type="text/css" href="styles/style.css">
 
   <body>
-    <h1 id='clients'></h1>
-    <h1 id='host'></h1>
-    <h1 id='myid'></h1>
+    <h2 id='clients'></h2>
+    <h2 id='host'></h2>
+    <h2 id='myid'></h2>
 
     <script src="/socket.io/socket.io.js"></script>
 
@@ -14,7 +14,7 @@
       var e2 = document.getElementById('host');
       var e3 = document.getElementById('myid');
 
-      socket.emit('hostConnected',socket.id);
+      socket.emit('hostConnected');
 
       socket.on('tick', function(data) {
         e1.innerHTML = 'Clients Connected: '+data.clients;
