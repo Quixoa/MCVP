@@ -9,8 +9,7 @@ var INDEX = path.join(__dirname, 'index.html');
 var CLIENTPATH = path.join(__dirname, 'client.html');
 var HOSTPATH = path.join(__dirname, 'host.html');
 
-var data =
-{
+var data = {
   'clients': 0,
   'host': false,
   'hostIDs':[],
@@ -19,7 +18,6 @@ var data =
   'test': function() {
     console.log('test');
   }
-
 };
 
 
