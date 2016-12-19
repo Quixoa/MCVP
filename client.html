@@ -25,16 +25,26 @@
       socket.emit('clientConnected');
 
       socket.on('tick', function(data) {
-        if !(data.host){
-          e1.innerHTML = 'Players: '+data.clients;
-          e2.innerHTML = 'Host Connected?: '+data.host;
-          e3.innerHTML = 'Your ID: '+socket.id;
-        }else{
+        if (data.host) {
           e1.innerHTML = "Game Started:"
           left.innerHTML = 'Left'
           right.innerHTML = 'Right'
           up.innerHTML = 'Up'
           down.innerHTML = 'Down'
+          left.style.visibility = 'visible'
+          right.style.visibility = 'visible'
+          up.style.visibility = 'visible'
+          down.style.visibility = 'visible'
+
+        }else{
+          left.style.visibility = 'hidden'
+          right.style.visibility = 'hidden'
+          up.style.visibility = 'hidden'
+          down.style.visibility = 'hidden'
+
+          e1.innerHTML = 'Players: '+data.clients;
+          e2.innerHTML = 'Host Connected?: '+data.host;
+          e3.innerHTML = 'Your ID: '+socket.id;
 
         }
 
