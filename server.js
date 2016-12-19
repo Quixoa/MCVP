@@ -56,7 +56,7 @@ io.on('connection', (socket) => {
   socket.on('disconnect',function(){
     if(data.clientIDs.includes(socket.id)){
         var index = data.clientIDs.indexOf(socket.id);
-        array.splice(index, 1);
+        data.clientIDs.splice(index, 1);
     }
     data.totalConnections = data.totalConnections-1
   });

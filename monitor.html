@@ -21,7 +21,6 @@
       var e5 = document.getElementById('totalConnections');
       var e6 = document.getElementById('myid');
 
-      socket.emit('clientConnected',socket.id);
 
       socket.on('tick', function(data) {
         e1.innerHTML = 'Clients Connected: '+data.clients;
