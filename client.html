@@ -2,10 +2,15 @@
 <link rel="stylesheet" type="text/css" href="styles/style.css">
 
   <body>
+  <center>
     <h2 id='clients'></h2>
     <h2 id='host'></h2>
     <h2 id='myid'></h2>
+    <button id = 'up' type="button"></button><br>
+    <button id = 'left' type="button"></button><button id = 'right' type="button"></button>
+    <button id = 'down' type="button"></button><br>
 
+  </center>
     <script src="/socket.io/socket.io.js"></script>
 
     <script>
@@ -13,13 +18,26 @@
       var e1 = document.getElementById('clients');
       var e2 = document.getElementById('host');
       var e3 = document.getElementById('myid');
-
+      var left = document.getElementById('left');
+      var right = document.getElementById('right');
+      var down = document.getElementById('down');
+      var up = document.getElementById('up');
       socket.emit('clientConnected');
 
       socket.on('tick', function(data) {
-        e1.innerHTML = 'Clients Connected: '+data.clients;
-        e2.innerHTML = 'Host Connected?: '+data.host;
-        e3.innerHTML = 'Your ID: '+socket.id;
+        if !(data.host){
+          e1.innerHTML = 'Players: '+data.clients;
+          e2.innerHTML = 'Host Connected?: '+data.host;
+          e3.innerHTML = 'Your ID: '+socket.id;
+        }else{
+          e1.innerHTML = "Game Started:"
+          left.innerHTML = 'Left'
+          right.innerHTML = 'Right'
+          up.innerHTML = 'Up'
+          down.innerHTML = 'Down'
+
+        }
+
 
 
       });
