@@ -9,11 +9,9 @@ var INDEX = path.join(__dirname, 'index.html');
 
 var server = express()
   .use((req, res) => res.sendFile(INDEX) )
-  .listen(PORT, () => console.log(`Listening on ${ PORT }`));
-
-server.get('/hello', function(req,res){
-  res.send('hello world');
-});
+  .listen(PORT, () => console.log(`Listening on ${ PORT }`))
+  .get('/hello', (req,res) => res.send('Hello'));
+ 
   
   
 var io = socketIO(server);
