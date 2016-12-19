@@ -41,12 +41,15 @@ io.on('connection', (socket) => {
 
   socket.on('clientConnected',function(id){
     data.clientIDs.push(id);
+    console.log('Added Client '+id)
     data.clients = data.clients + 1;
+
 
   });
 
   socket.on('hostConnected',function(id){
     data.hostIDs.push(id);
+    console.log('Added Host '+id)
     data.host = true;
 
   });

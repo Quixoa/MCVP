@@ -26,8 +26,8 @@
       socket.on('tick', function(data) {
         e1.innerHTML = 'Clients Connected: '+data.clients;
         e2.innerHTML = 'Host Connected?: '+data.host;
-        e3.innerHTML = 'HostIDs: '+data.hostIDs;
-        e4.innerHTML = 'Client IDs: '+data.clientIDs;
+        e3.innerHTML = 'HostIDs: '+ data.hostIDs.join();
+        e4.innerHTML = 'Client IDs: '+data.clientIDs.join();
         e5.innerHTML = 'Total Connections '+data.totalConnections;
         e6.innerHTML = 'Your ID: '+socket.id;
 
