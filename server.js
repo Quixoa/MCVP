@@ -32,20 +32,25 @@ var server = express()
 
 var io = socketIO(server);
 
-io.on('clientConnected',function(id){
-  data.clientIDs.push(id);
-  data.clients = data.clients + 1;
 
-});
-
-io.on('hostConnected',function(id){
-  data.hostIDs.push(id);
-  data.host = true;
-
-});
 
 io.on('connection', (socket) => {
   data.totalConnections = data.totalConnections+1;
+
+  socket.on('clientConnected',function(id){
+    data.clientIDs.push(id);
+    data.clients = data.clients + 1;
+
+  });
+
+  socket.on('hostConnected',function(id){
+    data.hostIDs.push(id);
+    data.host = true;
+
+  });
+
+
+
   socket.on('disconnect',function(){
     if(data.clientIDs.includes(socket.id)){
         var index = data.clientIDs.indexOf(socket.id);
@@ -53,6 +58,9 @@ io.on('connection', (socket) => {
     }
     data.totalConnections = data.totalConnections-1
   });
+
+
+
 });
 
 
