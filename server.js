@@ -25,7 +25,7 @@ var server = express()
   .get('/',(req, res) => res.sendFile(INDEX))
   .get('/client',(req, res) => res.sendFile(CLIENTPATH))
   .get('/host',(req, res) => res.sendFile(HOSTPATH))
-  .use("/styles",express.static(__dirname + "/styles"));
+  .use("/styles",express.static(__dirname + "/styles"))
   .listen(PORT, () => console.log(`Listening on ${ PORT }`));
 
 
