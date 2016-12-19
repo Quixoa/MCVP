@@ -65,7 +65,6 @@ io.on('connection', (socket) => {
         if(data.hostIDs.length == 0){
           data.host = false;
         }
-        data.clients = data.clients-1;
     }
     data.totalConnections = data.totalConnections-1
   });
