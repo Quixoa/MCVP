@@ -10,7 +10,8 @@ var INDEX = path.join(__dirname, 'index.html');
 var server = express();
 server.get('/', function(req,res){
   res.sendFile(INDEX);
-}
+});
+
 server.listen(PORT);
 
 var io = socketIO(server);
