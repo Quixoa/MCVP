@@ -8,6 +8,7 @@ var PORT = process.env.PORT || 3000;
 var INDEX = path.join(__dirname, 'index.html');
 var CLIENTPATH = path.join(__dirname, 'client.html');
 var HOSTPATH = path.join(__dirname, 'host.html');
+var MONITORPATH = path.join(__dirname, 'monitor.html');
 
 var data = {
   'clients': 0,
@@ -25,6 +26,7 @@ var server = express()
   .get('/',(req, res) => res.sendFile(INDEX))
   .get('/client',(req, res) => res.sendFile(CLIENTPATH))
   .get('/host',(req, res) => res.sendFile(HOSTPATH))
+  .get('/monitor',(req, res) => res.sendFile(MONITORPATH))
   .use("/styles",express.static(__dirname + "/styles"))
   .listen(PORT, () => console.log(`Listening on ${ PORT }`));
 
