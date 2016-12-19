@@ -57,6 +57,15 @@ io.on('connection', (socket) => {
     if(data.clientIDs.includes(socket.id)){
         var index = data.clientIDs.indexOf(socket.id);
         data.clientIDs.splice(index, 1);
+        data.clients = data.clients-1;
+    }
+    else if(data.hostIDs.includes(socket.id)){
+        var index = data.hostIDs.indexOf(socket.id);
+        data.hostIDs.splice(index, 1);
+        if(data.hostIDs.length == 0){
+          data.host = false;
+        }
+        data.clients = data.clients-1;
     }
     data.totalConnections = data.totalConnections-1
   });
