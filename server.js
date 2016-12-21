@@ -44,7 +44,7 @@ io.on('connection', (socket) => {
 
   socket.on('clientConnected',function(){
     data.clientIDs.push(socket.id);
-    data.positions.socket.id = [0,0];
+    data.positions[socket.id] = [0,0];
     data.clients = data.clients + 1;
 
   });
