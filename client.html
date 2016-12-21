@@ -41,19 +41,20 @@
       //TIMER FIRED
       socket.on('tick', function(data) {
         if (data.host) {
-          e1.innerHTML = "Game Started:"
-          e2.innerHTLM = ''
-          e3.innerHTML = ''
-          left.innerHTML = 'Left'
-          right.innerHTML = 'Right'
-          up.innerHTML = 'Up'
-          down.innerHTML = 'Down'
-          left.style.visibility = 'visible'
-          right.style.visibility = 'visible'
-          up.style.visibility = 'visible'
-          down.style.visibility = 'visible'
-          data.positions[String(socket.id)] = x;
-          data.positions[String(socket.id)] = y;
+          console.log(x,y);
+          e1.innerHTML = "Game Started:";
+          e2.innerHTLM = '';
+          e3.innerHTML = '';
+          left.innerHTML = 'Left';
+          right.innerHTML = 'Right';
+          up.innerHTML = 'Up';
+          down.innerHTML = 'Down';
+          left.style.visibility = 'visible';
+          right.style.visibility = 'visible';
+          up.style.visibility = 'visible';
+          down.style.visibility = 'visible';
+          data.positions[String(socket.id)+'x'] = x;
+          data.positions[String(socket.id)+'y'] = y;
         }else{
           left.style.visibility = 'hidden'
           right.style.visibility = 'hidden'
