@@ -44,7 +44,8 @@ io.on('connection', (socket) => {
 
   socket.on('clientConnected',function(){
     data.clientIDs.push(socket.id);
-    data.positions[String(socket.id)] = 0;
+    data.positions[String(socket.id)+'x'] = 100;
+    data.positions[String(socket.id)+'y'] = 100;
     data.clients = data.clients + 1;
 
   });
@@ -62,7 +63,9 @@ io.on('connection', (socket) => {
 
   socket.on('disconnect',function(){
     if(data.clientIDs.includes(socket.id)){
-        delete data.positions[String(socket.id)];
+        delete data.positions[String(socket.id)+'x'];
+        delete data.positions[String(socket.id)+'y'];
+
         var index = data.clientIDs.indexOf(socket.id);
         data.clientIDs.splice(index, 1);
         data.clients = data.clients-1;
