@@ -33,9 +33,7 @@
         rect(0, 0, WIDTH, HEIGHT);
         ctx.fillStyle = "purple";
         for (i=0;i<data.clientIDs.length;i++){
-          console.log(data.clientIDs[i]);
-          console.log(data.positions[String(data.clientIDs[i])+'x']);
-          //circle(data.positions[String(data.clientIDs[i])+'x'],data.positions[String(data.clientIDs[i])+'y'],RADIUS);
+          circle(data.positions[String(data.clientIDs[i])+'x'],data.positions[String(data.clientIDs[i])+'y'],RADIUS);
         }
       }
 

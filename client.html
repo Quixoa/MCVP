@@ -52,9 +52,8 @@
           right.style.visibility = 'visible';
           up.style.visibility = 'visible';
           down.style.visibility = 'visible';
-          console.log(socket.id);
-          data.positions[String(socket.id)+'x'] = x;
-          data.positions[String(socket.id)+'y'] = y;
+          data.positions['/#'+String(socket.id)+'x'] = x;
+          data.positions['/#'+String(socket.id)+'y'] = y;
         }else{
           left.style.visibility = 'hidden'
           right.style.visibility = 'hidden'
