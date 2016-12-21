@@ -33,7 +33,7 @@
         rect(0, 0, WIDTH, HEIGHT);
         ctx.fillStyle = "purple";
         for (i=0;i<data.clientIDs.length;i++){
-          circle(data.positions.data.clientIDs[i][0],data.positions.data.clientIDs[i][1],RADIUS);
+          circle(data.positions[String(data.clientIDs[i])][0],data.positions[String(data.clientIDs[i])][1],RADIUS);
         }
       }
 
