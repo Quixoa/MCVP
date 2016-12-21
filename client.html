@@ -15,8 +15,8 @@
 
     <script>
       //INIT
-      var x = 0
-      var y = 0
+      var x = 0;
+      var y = 0;
       var socket = io();
       var e1 = document.getElementById('clients');
       var e2 = document.getElementById('host');
@@ -40,6 +40,7 @@
 
       //TIMER FIRED
       socket.on('tick', function(data) {
+        console.log('tick');
         if (data.host) {
           console.log(x,y);
           e1.innerHTML = "Game Started:";
