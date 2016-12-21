@@ -33,10 +33,13 @@
         rect(0, 0, WIDTH, HEIGHT);
         ctx.fillStyle = "purple";
         for (i=0;i<data.clientIDs.length;i++){
-          console.log(String(data.clientIDs[i]));
-          console.log(data.positions[String(data.clientIDs[i])+'x']);
-          console.log(data.positions[String(data.clientIDs[i])+'y']);
-          circle(data.positions[String(data.clientIDs[i])+'x'],data.positions[String(data.clientIDs[i])+'y'],RADIUS);
+          var id = data.clientIDs[i];
+          console.log(id);
+          var x = data.positions[id+'x'];
+          var y = data.positions[id+'y'];
+          console.log(x,y);
+
+          circle(x,y,RADIUS);
         }
       }
 

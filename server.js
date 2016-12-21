@@ -43,7 +43,7 @@ io.on('connection', (socket) => {
   data.totalConnections = data.totalConnections+1;
 
   socket.on('clientConnected',function(){
-    data.clientIDs.push(socket.id);
+    data.clientIDs.push(String(socket.id));
     //data.positions[String(socket.id)+'x'] = 100;
     //data.positions[String(socket.id)+'y'] = 100;
     data.clients = data.clients + 1;
@@ -51,7 +51,7 @@ io.on('connection', (socket) => {
   });
 
   socket.on('hostConnected',function(){
-    data.hostIDs.push(socket.id);
+    data.hostIDs.push(String(socket.id));
     data.host = true;
     // if(data.canvas != null){
     //   initCanvas();
@@ -62,16 +62,16 @@ io.on('connection', (socket) => {
 
 
   socket.on('disconnect',function(){
-    if(data.clientIDs.includes(socket.id)){
+    if(data.clientIDs.includes(String(socket.id))){
         delete data.positions[String(socket.id)+'x'];
         delete data.positions[String(socket.id)+'y'];
 
-        var index = data.clientIDs.indexOf(socket.id);
+        var index = data.clientIDs.indexOf(String(socket.id));
         data.clientIDs.splice(index, 1);
         data.clients = data.clients-1;
     }
     else if(data.hostIDs.includes(socket.id)){
-        var index = data.hostIDs.indexOf(socket.id);
+        var index = data.hostIDs.indexOf(String(socket.id));
         data.hostIDs.splice(index, 1);
         if(data.hostIDs.length == 0){
           data.host = false;
@@ -80,9 +80,21 @@ io.on('connection', (socket) => {
     data.totalConnections = data.totalConnections-1
   });
 
+  socket.on('tick', function(data) {
+    for (i=0;i<data.clientIDs.length;i++){
+      var id = data.clientIDs[i];
+      console.log(id);
+      var x = io.sockets.connected[id].x;
+      var y = io.sockets.connected[id].x;
+      console.log(x,y);
+      data.positions[id + 'x'] = x;
+      data.positions[id + 'y'] = y;
 
+    }
+  });
 
 });
+
 
 // function initCanvas(data){
 //   data.canvas = document.createElement('canvas');

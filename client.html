@@ -15,9 +15,10 @@
 
     <script>
       //INIT
-      var x = 0;
-      var y = 0;
+
       var socket = io();
+      socket.x = 0;
+      socket.y = 0;
       var e1 = document.getElementById('clients');
       var e2 = document.getElementById('host');
       var e3 = document.getElementById('myid');
@@ -25,13 +26,10 @@
       var right = document.getElementById('right');
       var down = document.getElementById('down');
       var up = document.getElementById('up');
-      up.onclick = function (){y -= 5;};
-      down.onclick = function (){y += 5;};
-      left.onclick = function (){x -= 5;};
-      right.onclick = function (){x += 5;};
-
-
-
+      up.onclick = function (){socket.y -= 5;};
+      down.onclick = function (){socket.y += 5;};
+      left.onclick = function (){socket.x -= 5;};
+      right.onclick = function (){socket.x += 5;};
 
       socket.emit('clientConnected');
       //END INIT
@@ -52,9 +50,6 @@
           right.style.visibility = 'visible';
           up.style.visibility = 'visible';
           down.style.visibility = 'visible';
-          console.log('/#'+String(socket.id)+'x');
-          data.positions['/#'+String(socket.id)+'x'] = x;
-          data.positions['/#'+String(socket.id)+'y'] = y;
         }else{
           left.style.visibility = 'hidden'
           right.style.visibility = 'hidden'
