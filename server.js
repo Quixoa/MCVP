@@ -12,7 +12,7 @@ var MONITORPATH = path.join(__dirname, 'monitor.html');
 
 var data = {
   'clients': 0,
-  'positions':{},
+  'positions':new Array(),
   'canvas':null,
   'host': false,
   'hostIDs':[],
@@ -86,4 +86,4 @@ io.on('connection', (socket) => {
 //   data.ctx = canvas.getContext("2d");
 //
 // }
-setInterval(() => io.emit('tick', data, 100));
+setInterval(() => io.emit('tick', data, 1000));
