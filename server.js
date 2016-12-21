@@ -80,17 +80,6 @@ io.on('connection', (socket) => {
     data.totalConnections = data.totalConnections-1
   });
 
-  socket.on('tick', function(data) {
-    for (i=0;i<data.clientIDs.length;i++){
-      var id = data.clientIDs[i];
-      console.log(id);
-      var x = io.sockets.connected[id].x;
-      var y = io.sockets.connected[id].x;
-      console.log(x,y);
-      data.positions[id + 'x'] = x;
-      data.positions[id + 'y'] = y;
-
-    }
   });
 
 });

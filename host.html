@@ -35,8 +35,10 @@
         for (i=0;i<data.clientIDs.length;i++){
           var id = data.clientIDs[i];
           console.log(id);
-          var x = data.positions[id+'x'];
-          var y = data.positions[id+'y'];
+          var x = io.sockets.connected[id].x;
+          var y = io.sockets.connected[id].y;
+          console.log(x,y);
+
           console.log(x,y);
 
           circle(x,y,RADIUS);
