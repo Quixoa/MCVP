@@ -9,6 +9,7 @@
     <h2 id='clientIDs'></h2>
     <h2 id='totalConnections'></h2>
     <h2 id='myid'></h2>
+    <h2 id='positions'></h2>
 
     <script src="/socket.io/socket.io.js"></script>
 
@@ -20,6 +21,8 @@
       var e4 = document.getElementById('clientIDs');
       var e5 = document.getElementById('totalConnections');
       var e6 = document.getElementById('myid');
+      var e7 = document.getElementById('positions');
+
 
 
       socket.on('tick', function(data) {
@@ -29,6 +32,9 @@
         e4.innerHTML = 'Client IDs: '+data.clientIDs.join();
         e5.innerHTML = 'Total Connections '+data.totalConnections;
         e6.innerHTML = 'Your ID: '+socket.id;
+        e7.innerHTML = 'Pos: CHECK CONSOLE!';
+        console.log(data.positions);
+
 
 
       });
