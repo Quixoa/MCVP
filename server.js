@@ -44,8 +44,8 @@ io.on('connection', (socket) => {
 
   socket.on('clientConnected',function(){
     data.clientIDs.push(socket.id);
-    data.positions[String(socket.id)+'x'] = 100;
-    data.positions[String(socket.id)+'y'] = 100;
+    //data.positions[String(socket.id)+'x'] = 100;
+    //data.positions[String(socket.id)+'y'] = 100;
     data.clients = data.clients + 1;
 
   });
