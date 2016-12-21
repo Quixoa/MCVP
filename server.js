@@ -12,7 +12,7 @@ var MONITORPATH = path.join(__dirname, 'monitor.html');
 
 var data = {
   'clients': 0,
-  'positions':new Array(),
+  'positions':{},
   'canvas':null,
   'host': false,
   'hostIDs':[],
