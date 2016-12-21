@@ -3,26 +3,46 @@
 
   <body>
     <h2 id='clients'></h2>
-    <h2 id='host'></h2>
-    <h2 id='myid'></h2>
+
+    <canvas id="canvas" width="600" height="600">
+    This text is displayed if your browser does not support HTML5 Canvas.
+    </canvas>
 
     <script src="/socket.io/socket.io.js"></script>
 
     <script>
+      var canvas = document.getElementById("canvas");
+      var ctx = canvas.getContext("2d");
+      var WIDTH = 600;
+      var HEIGHT = 600;
+      var RADIUS = 10;
+
       var socket = io();
       var e1 = document.getElementById('clients');
-      var e2 = document.getElementById('host');
-      var e3 = document.getElementById('myid');
-
       socket.emit('hostConnected');
 
       socket.on('tick', function(data) {
-        e1.innerHTML = 'Clients Connected: '+data.clients;
-        e2.innerHTML = 'Host Connected?: '+data.host;
-        e3.innerHTML = 'Your ID: '+socket.id;
-
-
+        drawMyScreen(data);
+        e1.innerHTML = 'Players Live: '+data.clients;
       });
+
+      function drawMyScreen(data){
+        ctx.clearRect(0, 0, WIDTH, HEIGHT);
+        ctx.fillStyle = "white";
+        ctx.strokeStyle = "black";
+        rect(0, 0, WIDTH, HEIGHT);
+        ctx.fillStyle = "purple";
+        for (i=0;i<data.clientIDs.length;i++){
+          circle(data.positions.data.clientIDs[i][0],data.positions.data.clientIDs[i][1],RADIUS);
+        }
+      }
+
+      function circle(x, y, r) {
+          ctx.beginPath();
+          ctx.arc(x, y, r, 0, Math.PI * 2, true);
+          ctx.fill();
+      }
+
     </script>
 
   </body>

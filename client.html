@@ -6,14 +6,17 @@
     <h2 id='clients'></h2>
     <h2 id='host'></h2>
     <h2 id='myid'></h2>
-    <button id = 'up' type="button"></button><br>
-    <button id = 'left' type="button"></button><button id = 'right' type="button"></button>
-    <button id = 'down' type="button"></button><br>
+    <button onclick="up()" id = 'up' type="button"></button><br>
+    <button onclick="left()" id = 'left' type="button"></button><button onclick="right()" id = 'right' type="button"></button><br>
+    <button onclick="down()" id = 'down' type="button"></button>
 
   </center>
     <script src="/socket.io/socket.io.js"></script>
 
     <script>
+      //INIT
+      var x = 0
+      var y = 0
       var socket = io();
       var e1 = document.getElementById('clients');
       var e2 = document.getElementById('host');
@@ -23,10 +26,29 @@
       var down = document.getElementById('down');
       var up = document.getElementById('up');
       socket.emit('clientConnected');
+      //END INIT
 
+      function up(){
+        y += 5;
+      }
+      function down(){
+        y -= 5;
+
+      }
+      function left(){
+        x-=5;
+      }
+      function right(){
+        x+=5;
+      }
+
+
+      //TIMER FIRED
       socket.on('tick', function(data) {
         if (data.host) {
           e1.innerHTML = "Game Started:"
+          e2.innerHTLM = ''
+          e3.innerHTML = ''
           left.innerHTML = 'Left'
           right.innerHTML = 'Right'
           up.innerHTML = 'Up'
@@ -35,22 +57,21 @@
           right.style.visibility = 'visible'
           up.style.visibility = 'visible'
           down.style.visibility = 'visible'
-
+          data.positions.socket.id[0] = x;
+          data.positions.socket.id[1] = y;
         }else{
           left.style.visibility = 'hidden'
           right.style.visibility = 'hidden'
           up.style.visibility = 'hidden'
           down.style.visibility = 'hidden'
-
           e1.innerHTML = 'Players: '+data.clients;
           e2.innerHTML = 'Host Connected?: '+data.host;
           e3.innerHTML = 'Your ID: '+socket.id;
 
         }
 
-
-
       });
+      //END TIMER FIRED
     </script>
 
   </body>

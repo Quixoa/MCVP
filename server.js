@@ -12,10 +12,13 @@ var MONITORPATH = path.join(__dirname, 'monitor.html');
 
 var data = {
   'clients': 0,
+  'positions':{},
+  'canvas':null,
   'host': false,
   'hostIDs':[],
   'totalConnections':0,
   'clientIDs':[],
+  'clientObjects':[],
   'test': function() {
     console.log('test');
   }
@@ -41,6 +44,7 @@ io.on('connection', (socket) => {
 
   socket.on('clientConnected',function(){
     data.clientIDs.push(socket.id);
+    data.positions.socket.id = [0,0];
     data.clients = data.clients + 1;
 
   });
@@ -48,6 +52,9 @@ io.on('connection', (socket) => {
   socket.on('hostConnected',function(){
     data.hostIDs.push(socket.id);
     data.host = true;
+    // if(data.canvas != null){
+    //   initCanvas();
+    // }
 
   });
 
@@ -55,6 +62,7 @@ io.on('connection', (socket) => {
 
   socket.on('disconnect',function(){
     if(data.clientIDs.includes(socket.id)){
+        delete data.positions[socket.id];
         var index = data.clientIDs.indexOf(socket.id);
         data.clientIDs.splice(index, 1);
         data.clients = data.clients-1;
@@ -73,5 +81,9 @@ io.on('connection', (socket) => {
 
 });
 
-
-setInterval(() => io.emit('tick', data, 1000));
+// function initCanvas(data){
+//   data.canvas = document.createElement('canvas');
+//   data.ctx = canvas.getContext("2d");
+//
+// }
+setInterval(() => io.emit('tick', data, 100));
