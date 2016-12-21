@@ -89,4 +89,4 @@ io.on('connection', (socket) => {
 //   data.ctx = canvas.getContext("2d");
 //
 // }
-setInterval(() => io.emit('tick', data, 1000));
+setInterval(() => io.emit('tick', data);,1000);
