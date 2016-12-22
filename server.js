@@ -57,7 +57,11 @@ io.on('connection', (socket) => {
 
   });
 
-
+  socket.on('update',function(id,x,y){
+    data.positions[id+'x'] = x;
+    data.positions[id+'y'] = y;
+  });
+  
   socket.on('disconnect',function(){
     if(data.clientIDs.includes(String(socket.id))){
         delete data.positions[String(socket.id)+'x'];

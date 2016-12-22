@@ -50,11 +50,13 @@
           right.style.visibility = 'visible';
           up.style.visibility = 'visible';
           down.style.visibility = 'visible';
-          data.positions['/#'+socket.id+'x'] = x;
-          data.positions['/#'+socket.id+'y'] = y;
-          console.log('X:' + data.positions['/#'+socket.id+'x']);
-          console.log('Y:' + data.positions['/#'+socket.id+'y']);
-          console.log('/#'+socket.id+'x');
+          socket.emit('update','/#'+socket.id,x,y);
+          console.log('/#'+socket.id,x,y);
+          // data.positions['/#'+socket.id+'x'] = x;
+          // data.positions['/#'+socket.id+'y'] = y;
+          // console.log('X:' + data.positions['/#'+socket.id+'x']);
+          // console.log('Y:' + data.positions['/#'+socket.id+'y']);
+          // console.log('/#'+socket.id+'x');
         }else{
           left.style.visibility = 'hidden'
           right.style.visibility = 'hidden'
