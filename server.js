@@ -92,4 +92,4 @@ io.on('connection', (socket) => {
 // }
 setInterval(function () {
     io.emit('tick', data);
-    },1000);
+    },50);
