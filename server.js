@@ -61,9 +61,8 @@ io.on('connection', (socket) => {
 
   socket.on('untick',function(data){
     for (i=0;i<data.clientIDs.length;i++){
-      var id = data.clientIDs[i]
-      id = id.slice(2,-1);
-      var sock = io.sockets.connected[id];
+      id = data.clientIDs[i].slice(2,-1);
+      sock = io.sockets.connected[id];
       data.positions[id+'x'] = sock.x;
       data.positions[id+'y'] = sock.y;
     }
@@ -80,12 +79,12 @@ io.on('connection', (socket) => {
         delete data.positions[socket.id.slice(2,-1)+'y'];
 
         var index = data.clientIDs.indexOf(String(socket.id));
-        data.clientIDs.splice(index, 1);
+        data.clientIDs.slice(index, 1);
         data.clients = data.clients-1;
     }
     else if(data.hostIDs.includes(socket.id)){
         var index = data.hostIDs.indexOf(String(socket.id));
-        data.hostIDs.splice(index, 1);
+        data.hostIDs.slice(index, 1);
         if(data.hostIDs.length == 0){
           data.host = false;
         }
