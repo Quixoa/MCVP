@@ -24,7 +24,6 @@
       socket.on('tick', function(data) {
         drawMyScreen(data);
         e1.innerHTML = 'Players Live: '+data.clients;
-        socket.emit('untick',data);
       });
 
       function drawMyScreen(data){
@@ -34,12 +33,12 @@
         rect(0, 0, WIDTH, HEIGHT);
         ctx.fillStyle = "purple";
         for (i=0;i<data.clientIDs.length;i++){
-          var id = data.clientIDs[i]
-          id = id.slice(2,-1);
+          var id = data.clientIDs[i];
           console.log(id);
-          var x = data.positions[id+'x'];
-          var y = data.positions[id+'y'];
+          var x = data.positions[data.clientIDs[i]+'x'];
+          var y = data.positions[data.clientIDs[i]+'y'];
           console.log(x,y);
+          console.log(id);
 
           circle(x,y,RADIUS);
         }

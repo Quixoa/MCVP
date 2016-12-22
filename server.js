@@ -44,8 +44,8 @@ io.on('connection', (socket) => {
 
   socket.on('clientConnected',function(){
     data.clientIDs.push(String(socket.id));
-    //data.positions[String(socket.id)+'x'] = 100;
-    //data.positions[String(socket.id)+'y'] = 100;
+    data.positions[String(socket.id)+'x'] = 100;
+    data.positions[String(socket.id)+'y'] = 100;
     data.clients = data.clients + 1;
 
   });
@@ -53,38 +53,23 @@ io.on('connection', (socket) => {
   socket.on('hostConnected',function(){
     data.hostIDs.push(String(socket.id));
     data.host = true;
-    // if(data.canvas != null){
-    //   initCanvas();
-    // }
 
-  });
-
-  socket.on('untick',function(data){
-    for (i=0;i<data.clientIDs.length;i++){
-      id = data.clientIDs[i].slice(2,-1);
-      sock = io.sockets.connected[id];
-      data.positions[id+'x'] = sock.x;
-      data.positions[id+'y'] = sock.y;
-    }
-
-    data.positions
 
   });
 
 
   socket.on('disconnect',function(){
     if(data.clientIDs.includes(String(socket.id))){
-
-        delete data.positions[socket.id.slice(2,-1)+'x'];
-        delete data.positions[socket.id.slice(2,-1)+'y'];
+        delete data.positions[String(socket.id)+'x'];
+        delete data.positions[String(socket.id)+'y'];
 
         var index = data.clientIDs.indexOf(String(socket.id));
-        data.clientIDs.slice(index, 1);
+        data.clientIDs.splice(index, 1);
         data.clients = data.clients-1;
     }
     else if(data.hostIDs.includes(socket.id)){
         var index = data.hostIDs.indexOf(String(socket.id));
-        data.hostIDs.slice(index, 1);
+        data.hostIDs.splice(index, 1);
         if(data.hostIDs.length == 0){
           data.host = false;
         }
