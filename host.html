@@ -34,7 +34,8 @@
         rect(0, 0, WIDTH, HEIGHT);
         ctx.fillStyle = "purple";
         for (i=0;i<data.clientIDs.length;i++){
-          var id = (data.clientIDs[i]).splice(2,-1);
+          var id = data.clientIDs[i]
+          id = id.splice(2,-1);
           console.log(id);
           var x = data.positions[id+'x'];
           var y = data.positions[id+'y'];
