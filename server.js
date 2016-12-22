@@ -59,12 +59,25 @@ io.on('connection', (socket) => {
 
   });
 
+  socket.on('untick',function(data){
+    for (i=0;i<data.clientIDs.length;i++){
+      var id = data.clientIDs[i]
+      id = id.slice(2,-1);
+      var sock = io.sockets.connected[id];
+      data.positions[id+'x'] = sock.x;
+      data.positions[id+'y'] = sock.y;
+    }
+
+    data.positions
+
+  });
 
 
   socket.on('disconnect',function(){
     if(data.clientIDs.includes(String(socket.id))){
-        delete data.positions[String(socket.id)+'x'];
-        delete data.positions[String(socket.id)+'y'];
+
+        delete data.positions[socket.id.slice(2,-1)+'x'];
+        delete data.positions[socket.id.slice(2,-1)+'y'];
 
         var index = data.clientIDs.indexOf(String(socket.id));
         data.clientIDs.splice(index, 1);
